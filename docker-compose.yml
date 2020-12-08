@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  backend:
+    tty: true
+    container_name: backend
+    build: ./server
+    restart: always
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+  front:
+    container_name: frontend
+    build: ./client
+    tty: true
+    depends_on:
+      - backend
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+
+  db:
+    tty: true
+    image: timescale/timescaledb
+    container_name: database
+    volumes:
+    - ./initdb.sql:/docker-entrypoint-initdb.d/init.sql
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password

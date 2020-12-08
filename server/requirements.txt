@@ -1,0 +1,10 @@
+bottle==0.12.18
+certifi==2020.4.5.1
+chardet==3.0.4
+idna==2.9
+peewee==3.13.2
+psycopg2
+requests
+six==1.14.0
+urllib3==1.25.8
+wsgi-intercept==1.9.2
